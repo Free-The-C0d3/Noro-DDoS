@@ -25,7 +25,7 @@ So It Doesn't Support TLS/SSL
 And Noro's Architecture Is All New Create By Me
 
 Support Lots Of CDN Attack
-About 50k Requests And 1Gbps Bandwidth On VPS
+About 50k Requests And 1Gb Bandwidth Per Second On VPS
 
 # Install 
 On Linux
