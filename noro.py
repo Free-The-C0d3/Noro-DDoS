@@ -10,7 +10,6 @@ except:
 
 useragents = []
 string = ["id","q","a","s","page","result","search","login","user","nigga","Noro","hiv","covid","h1n1"]
-attack_type = "HEAD"
 sslmode = False
 new_host = ""
 brute = False
@@ -291,11 +290,13 @@ if sslmode == True:
 else:
     url = "http://" + host + path
 
-if "--method=GET" in sys.argv:
-    attack_type = "GET"
-
-if "--method=POST" in sys.argv:
-    attack_type = "POST"
+if "--method=GET" and "--method=POST" not in sys.argv:
+    attack_type = "HEAD"
+else:
+    if "--method=GET" in sys.argv:
+        attack_type = "GET"
+    else:
+        attack_type = "POST"
 
 if "--brute" in sys.argv:
     brute = True
