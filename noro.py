@@ -259,9 +259,9 @@ if "--help" in sys.argv:
     print(" --ssl    | Enable TLS/SSL Proxy")
     print(" --brute  | Launch Brute Mode")
     print("\nAttack Request Method Can Be Change Like:\n")
-    print(" --method=GET   |  GET Method Can Cost Lots Of CPU Usage")
-    print(" --method=HEAD  |  HEAD Method Can Enable Dsyn Attack")
-    print(" --method=POST  |  POST Method Easy Take Down Database\n")
+    print(" --GET   |  GET Method Can Cost Lots Of CPU Usage")
+    print(" --HEAD  |  HEAD Method Can Enable Dsyn Attack")
+    print(" --POST  |  POST Method Easy Take Down Database\n")
     sys.exit()
 
 if "--ssl" in sys.argv:
